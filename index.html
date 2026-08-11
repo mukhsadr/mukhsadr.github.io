@@ -8,14 +8,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --green: #738f7a;
-      --green-dark: #587263;
-      --green-soft: #edf3ee;
-      --ink: #2f3531;
-      --muted: #606963;
+      --green: #41675a;
+      --green-dark: #284a3f;
+      --green-soft: #edf3ef;
+      --gold: #b48a55;
+      --ink: #24312c;
+      --muted: #66716c;
       --paper: #ffffff;
-      --canvas: #f7f6f3;
-      --line: #d9e1db;
+      --canvas: #f6f4ef;
+      --line: #dce4df;
+      --shadow: 0 14px 40px rgba(40, 74, 63, .07);
     }
 
     * { box-sizing: border-box; }
@@ -26,64 +28,84 @@
       margin: 0;
       background: var(--canvas);
       color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 16px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    a { color: var(--green-dark); }
+    a { color: var(--green-dark); text-underline-offset: 3px; }
 
     header {
-      padding: 34px 24px 38px;
+      position: relative;
+      overflow: hidden;
+      padding: 52px 24px 48px;
       color: white;
-      background: var(--green);
+      background: linear-gradient(135deg, #27483d 0%, #41675a 62%, #55796c 100%);
       text-align: center;
     }
 
+    header::after {
+      content: "";
+      position: absolute;
+      right: -110px;
+      bottom: -175px;
+      width: 360px;
+      height: 360px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      box-shadow: 0 0 0 58px rgba(255,255,255,.025), 0 0 0 116px rgba(255,255,255,.018);
+      pointer-events: none;
+    }
+
     .hero, main, .nav-inner {
-      width: min(1060px, calc(100% - 40px));
+      width: min(1040px, calc(100% - 40px));
       margin: 0 auto;
     }
+
+    .hero { position: relative; z-index: 1; }
 
     .identity {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 20px;
     }
 
     .monogram {
       display: block;
-      width: 76px;
-      height: 76px;
-      flex: 0 0 76px;
-      border: 3px solid rgba(255, 255, 255, .92);
+      width: 88px;
+      height: 88px;
+      flex: 0 0 88px;
+      border: 4px solid rgba(255, 255, 255, .94);
       border-radius: 50%;
       background: #f5f1e6;
       object-fit: cover;
       object-position: center 30%;
-      box-shadow: 0 3px 12px rgba(35, 58, 43, .22);
+      box-shadow: 0 10px 28px rgba(19, 42, 34, .28);
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2rem, 5vw, 2.55rem);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.25rem, 5vw, 3.15rem);
       line-height: 1.1;
-      letter-spacing: -.02em;
+      letter-spacing: -.035em;
+      font-weight: 500;
     }
 
     .tagline {
-      max-width: 760px;
-      margin: 16px auto 14px;
-      color: rgba(255,255,255,.92);
-      font-size: 1rem;
-      line-height: 1.55;
+      max-width: 720px;
+      margin: 20px auto 18px;
+      color: rgba(255,255,255,.86);
+      font-size: 1.02rem;
+      line-height: 1.65;
     }
 
     .links {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 20px;
     }
 
     .links a {
@@ -92,93 +114,192 @@
       gap: 7px;
       color: white;
       text-decoration: none;
-      transition: opacity .2s;
+      font-size: .94rem;
+      transition: opacity .2s, transform .2s;
     }
 
     .links a:hover, .links a:focus-visible {
       opacity: .75;
+      transform: translateY(-1px);
     }
 
     nav {
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(250, 249, 247, .96);
+      background: rgba(250, 249, 246, .91);
       border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(14px);
     }
 
     .nav-inner {
       display: flex;
       justify-content: center;
-      gap: 28px;
+      gap: 36px;
       overflow-x: auto;
-      padding: 13px 0;
+      padding: 15px 0;
     }
 
     nav a {
       color: var(--green-dark);
-      font-size: .9rem;
+      font-size: .78rem;
       font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
       text-decoration: none;
       white-space: nowrap;
     }
 
-    main { padding: 18px 0 60px; }
+    main { padding: 20px 0 68px; }
 
     section {
-      margin: 28px 0;
-      padding: clamp(22px, 4vw, 34px);
+      margin: 26px 0;
+      padding: clamp(26px, 4.5vw, 42px);
       background: var(--paper);
-      border: 1px solid #e8ece9;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(39, 57, 45, .11);
+      border: 1px solid rgba(65, 103, 90, .12);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
     }
 
     h2 {
-      margin: 0 0 18px;
-      padding-bottom: 7px;
-      color: var(--green);
-      border-bottom: 2px solid var(--green);
-      font-size: clamp(1.45rem, 3vw, 1.72rem);
-      letter-spacing: -.01em;
+      margin: 0 0 22px;
+      padding-bottom: 12px;
+      color: var(--green-dark);
+      border-bottom: 1px solid var(--line);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.65rem, 3vw, 2rem);
+      font-weight: 500;
+      letter-spacing: -.025em;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 46px;
+      height: 3px;
+      margin-bottom: -14px;
+      background: var(--gold);
+      border-radius: 3px;
+      transform: translateY(13px);
     }
 
     p { line-height: 1.62; }
 
-    .lead { font-size: 1.05rem; }
+    .lead { color: #354740; font-size: 1.08rem; }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(30px, 6vw, 64px);
+    }
+
+    .about-photo {
+      display: block;
+      width: 230px;
+      height: 230px;
+      object-fit: cover;
+      object-position: center 28%;
+      border: 7px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 16px 38px rgba(40, 74, 63, .17);
+      outline: 1px solid var(--line);
+    }
+
+    .about-copy h2 { margin-top: 0; }
+    .about-copy p:last-child { margin-bottom: 0; }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      gap: 20px;
     }
 
+    .featured-project {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(290px, .85fr);
+      grid-column: 1 / -1;
+      padding: 0;
+      background: #fff;
+    }
+
+    .project-visual {
+      display: flex;
+      min-height: 330px;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      overflow: hidden;
+      background: #f3f6f4;
+      border-right: 1px solid var(--line);
+    }
+
+    .project-visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: 390px;
+      object-fit: contain;
+    }
+
+    .project-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(26px, 4vw, 42px);
+    }
+
+    .project-copy p { margin: 4px 0 0; color: var(--muted); }
+
+    .project-copy .card-link { align-self: flex-start; }
+
     .card {
-      padding: 20px;
-      background: #fbfcfb;
+      position: relative;
+      padding: 24px;
+      overflow: hidden;
+      background: linear-gradient(145deg, #ffffff, #f8faf8);
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 12px;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #c6d4cc;
+      box-shadow: 0 14px 26px rgba(40, 74, 63, .08);
     }
 
     .card .number {
-      color: var(--green);
+      color: var(--gold);
       font-size: .78rem;
       font-weight: 700;
-      letter-spacing: .12em;
+      letter-spacing: .16em;
     }
 
     h3, .card h3 {
-      margin: 8px 0;
+      margin: 9px 0;
       color: var(--green-dark);
-      font-size: 1.22rem;
+      font-size: 1.18rem;
     }
 
     .card p { margin-bottom: 0; color: var(--muted); }
 
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 18px;
+      color: var(--green-dark);
+      font-size: .86rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .card-link:hover { text-decoration: underline; }
+
     .timeline-item {
       display: grid;
-      grid-template-columns: 170px 1fr;
+      grid-template-columns: 160px 1fr;
       gap: 26px;
       padding: 22px 0;
       border-top: 1px solid var(--line);
@@ -186,7 +307,7 @@
 
     .timeline-item:first-of-type { border-top: 0; }
 
-    .date { color: var(--muted); font-weight: 600; }
+    .date { color: var(--gold); font-size: .9rem; font-weight: 700; letter-spacing: .03em; }
 
     .timeline-item h3 { margin: 0 0 4px; color: var(--green-dark); }
 
@@ -194,28 +315,70 @@
 
     .publication {
       padding-left: 18px;
-      border-left: 4px solid var(--green);
+      padding: 20px 22px;
+      background: var(--green-soft);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 10px 10px 0;
     }
 
     .publication h3 { margin-bottom: 6px; color: var(--green-dark); }
 
     .publication p { margin: 4px 0; color: var(--muted); }
 
+    .publication + .publication { margin-top: 16px; }
+
+    .publication-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .publication-links a {
+      font-size: .86rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .publication-links a:hover { text-decoration: underline; }
+
+    .collaborators {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .collaborator {
+      padding: 9px 13px;
+      color: var(--green-dark);
+      background: var(--green-soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: .9rem;
+    }
+
     footer {
-      padding: 30px 20px 42px;
+      padding: 22px 20px 48px;
       color: var(--muted);
       text-align: center;
       font-size: .9rem;
     }
 
     @media (max-width: 720px) {
-      header { padding: 28px 18px 30px; }
+      header { padding: 34px 18px 36px; }
       .grid { grid-template-columns: 1fr; }
+      .featured-project { grid-template-columns: 1fr; }
+      .project-visual { min-height: 230px; border-right: 0; border-bottom: 1px solid var(--line); }
       .timeline-item { grid-template-columns: 1fr; gap: 7px; }
       .hero, main, .nav-inner { width: min(100% - 28px, 1060px); }
       .nav-inner { justify-content: flex-start; }
       .identity { gap: 11px; }
-      .monogram { width: 62px; height: 62px; flex-basis: 62px; }
+      .monogram { width: 70px; height: 70px; flex-basis: 70px; }
+      h1 { font-size: clamp(2rem, 10vw, 2.55rem); }
+      .about-layout { grid-template-columns: 1fr; text-align: center; }
+      .about-photo { width: 190px; height: 190px; margin: 0 auto; }
+      .about-copy h2 { text-align: left; }
+      .about-copy p { text-align: left; }
     }
   </style>
 </head>
@@ -239,52 +402,90 @@
     <div class="nav-inner">
       <a href="#about">About</a>
       <a href="#research">Research</a>
-      <a href="#publication">Publication</a>
+      <a href="#publications">Publications</a>
+      <a href="#collaborators">Coauthors</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
 
   <main>
-    <section id="about">
-      <h2>About</h2>
-      <p class="lead">I am a graduate student in Computer Science at Vanderbilt University and a research assistant in the Medical-image Analysis and Statistical Interpretation (MASI) Lab, advised by Dr. Bennett A. Landman.</p>
-      <p>My work sits at the intersection of medical imaging, machine learning, and research computing. I develop reproducible pipelines that integrate deep-learning segmentation models across local workstations, GPU clusters, and cloud environments. I am especially interested in translating technically robust systems into tools that support clinical research.</p>
+    <section id="about" class="about-layout">
+      <img class="about-photo" src="headshot.jpg?v=3" alt="Portrait of Adam M. Sadriddinov" width="230" height="230">
+      <div class="about-copy">
+        <h2>About Me</h2>
+        <p class="lead">I am an M.S. Computer Science student and research assistant in Vanderbilt University's MASI Lab, advised by Dr. Bennett A. Landman.</p>
+        <p>I build reproducible medical-imaging and scientific-visualization tools, with current work spanning robust spleen segmentation, diffusion MRI, and accessible research software. I enjoy turning complex computational methods into practical systems for researchers and clinicians.</p>
+      </div>
     </section>
 
     <section id="research">
       <h2>Selected Work</h2>
       <div class="grid">
-        <article class="card">
-          <span class="number">01</span>
-          <h3>Robust Spleen Segmentation</h3>
-          <p>Characterizing four pretrained CT segmentation pipelines and four fusion approaches across public, in-house, and independent clinical cohorts.</p>
+        <article class="card featured-project">
+          <div class="project-visual">
+            <img src="Figure%201.svg" alt="Overview of the robust spleen segmentation and model-fusion framework" loading="lazy">
+          </div>
+          <div class="project-copy">
+            <span class="number">FEATURED PROJECT</span>
+            <h3>Robust Spleen Segmentation &amp; Fusion</h3>
+            <p>I developed a reproducible CT framework that compares four pretrained segmentation pipelines and combines their predictions using majority voting, locally weighted fusion, STAPLE, and a learned voxel-wise fuser. The work supports reliable spleen volumetry across diverse public, in-house, and clinical datasets.</p>
+            <a class="card-link" href="https://zenodo.org/records/21186458" target="_blank" rel="noopener noreferrer">View software release <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          </div>
         </article>
         <article class="card">
           <span class="number">02</span>
-          <h3>Clinical Spleen Volumetry</h3>
-          <p>Developing a containerized workflow that produces fused spleen segmentations and volume measurements for myelofibrosis and related drug studies.</p>
+          <h3>DeepFixel</h3>
+          <p>A spherical convolutional neural network for efficient identification and separation of crossing white-matter fibers from diffusion MRI.</p>
+          <a class="card-link" href="https://arxiv.org/abs/2511.03893" target="_blank" rel="noopener noreferrer">Read the paper <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
         </article>
         <article class="card">
           <span class="number">03</span>
-          <h3>OpenDIVE</h3>
-          <p>Supporting an accessible scientific visualization workshop designed to make image analysis and color choices more inclusive for color-vision differences.</p>
-        </article>
-        <article class="card">
-          <span class="number">04</span>
-          <h3>AI Summer School</h3>
-          <p>Coaching learners through practical AI projects using VS Code, cloud notebooks, GitHub, and an AI coding assistant in focused, hands-on sessions.</p>
+          <h3>OpenDIVE · BrainHack Vandy</h3>
+          <p>An open-source command-line tool for standardized, interpretable, and color-vision-accessible diffusion MRI and tractography visualization.</p>
+          <a class="card-link" href="https://github.com/MASILab/open_dive" target="_blank" rel="noopener noreferrer">Explore the project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
         </article>
       </div>
     </section>
 
-    <section id="publication">
-      <h2>Publication</h2>
+    <section id="publications">
+      <h2>Publications</h2>
+      <article class="publication">
+        <h3>DeepFixel: Crossing white matter fiber identification through spherical convolutional neural networks</h3>
+        <p>Adam M. Saunders, Lucas W. Remedios, Elyssa M. McMaster, Jongyeon Yoon, Gaurav Rudravaram, <strong>Adam Sadriddinov</strong>, Praitayini Kanakaraj, Bennett A. Landman, and Adam W. Anderson.</p>
+        <p>Preprint, 2025.</p>
+        <div class="publication-links"><a href="https://arxiv.org/abs/2511.03893" target="_blank" rel="noopener noreferrer">arXiv <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+      </article>
+      <article class="publication">
+        <h3>OpenDIVE: Streamlining Tractography Visualization</h3>
+        <p>Adam M. Saunders, Elyssa M. McMaster, Chris Rorden, Johaan Kathilankal Jis, Minyi Sun, <strong>Adam Sadriddinov</strong>, Lukas VanTilburg, Michael E. Kim, Bennett A. Landman, and Kurt G. Schilling.</p>
+        <p>MIDL 2025 Short Papers.</p>
+        <div class="publication-links">
+          <a href="https://openreview.net/forum?id=EjqP4vHnHL" target="_blank" rel="noopener noreferrer">Paper <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          <a href="https://github.com/MASILab/open_dive" target="_blank" rel="noopener noreferrer">Code <i class="fa-brands fa-github" aria-hidden="true"></i></a>
+        </div>
+      </article>
       <article class="publication">
         <h3>Characterizing pretrained models and fusion methods for robust spleen segmentation</h3>
-        <p>Adam M. Sadriddinov and collaborators</p>
+        <p><strong>Adam M. Sadriddinov</strong> and collaborators.</p>
         <p>SPIE Medical Imaging 2027, Image Processing — conference submission.</p>
+        <div class="publication-links"><a href="https://zenodo.org/records/21186458" target="_blank" rel="noopener noreferrer">Software release <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
       </article>
+    </section>
+
+    <section id="collaborators">
+      <h2>Selected Coauthors &amp; Collaborators</h2>
+      <div class="collaborators" aria-label="Selected coauthors and collaborators">
+        <span class="collaborator">Bennett A. Landman</span>
+        <span class="collaborator">Adam M. Saunders</span>
+        <span class="collaborator">Lucas W. Remedios</span>
+        <span class="collaborator">Elyssa M. McMaster</span>
+        <span class="collaborator">Gaurav Rudravaram</span>
+        <span class="collaborator">Michael E. Kim</span>
+        <span class="collaborator">Kurt G. Schilling</span>
+        <span class="collaborator">Ashwin Kishtagari</span>
+        <span class="collaborator">Michael R. Savona</span>
+      </div>
     </section>
 
     <section id="experience">
