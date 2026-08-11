@@ -357,6 +357,83 @@
       font-size: .9rem;
     }
 
+    .gallery-intro {
+      max-width: 700px;
+      margin: -6px 0 24px;
+      color: var(--muted);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .gallery-item {
+      position: relative;
+      min-height: 250px;
+      margin: 0;
+      overflow: hidden;
+      background: var(--green-soft);
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(40, 74, 63, .09);
+      isolation: isolate;
+    }
+
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 250px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      transition: transform .45s ease, filter .35s ease;
+    }
+
+    .gallery-item figcaption {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 22px;
+      color: #fff;
+      background: linear-gradient(to top, rgba(22, 45, 37, .93), rgba(22, 45, 37, .16) 68%, transparent);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .gallery-item:hover img,
+    .gallery-item:focus-visible img {
+      transform: scale(1.045);
+      filter: saturate(.78) brightness(.72);
+    }
+
+    .gallery-item:hover figcaption,
+    .gallery-item:focus-visible figcaption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery-item:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .gallery-item strong {
+      margin-bottom: 5px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.18rem;
+      font-weight: 500;
+    }
+
+    .gallery-item span {
+      color: rgba(255,255,255,.86);
+      font-size: .87rem;
+      line-height: 1.45;
+    }
+
     footer {
       padding: 22px 20px 48px;
       color: var(--muted);
@@ -379,6 +456,16 @@
       .about-photo { width: 190px; height: 190px; margin: 0 auto; }
       .about-copy h2 { text-align: left; }
       .about-copy p { text-align: left; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item, .gallery-item img { min-height: 280px; }
+    }
+
+    @media (min-width: 721px) and (max-width: 940px) {
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (hover: none) {
+      .gallery-item figcaption { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -405,6 +492,7 @@
       <a href="#publications">Publications</a>
       <a href="#collaborators">Coauthors</a>
       <a href="#experience">Experience</a>
+      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
@@ -512,6 +600,37 @@
       <h2>Contact</h2>
       <p>I welcome conversations about medical imaging, research computing, reproducible AI, and collaborative research.</p>
       <p><a href="mailto:adam.m.sadriddinov@vanderbilt.edu">adam.m.sadriddinov@vanderbilt.edu</a></p>
+    </section>
+
+    <section id="gallery">
+      <h2>Beyond the Research</h2>
+      <p class="gallery-intro">A few moments from research presentations, collaborative workshops, and the Vanderbilt community. Hover over a photo to learn more.</p>
+      <div class="gallery-grid">
+        <figure class="gallery-item" tabindex="0">
+          <img src="IMG_0707.jpg" alt="Adam Sadriddinov with Dr. Bennett Landman at Vanderbilt" loading="lazy">
+          <figcaption><strong>Research Mentorship</strong><span>With Dr. Bennett A. Landman at Vanderbilt.</span></figcaption>
+        </figure>
+        <figure class="gallery-item" tabindex="0">
+          <img src="BCD_1136.jpg" alt="Adam Sadriddinov presenting during a collaborative workshop" loading="lazy">
+          <figcaption><strong>Sharing Ideas</strong><span>Presenting technical work during a collaborative session.</span></figcaption>
+        </figure>
+        <figure class="gallery-item" tabindex="0">
+          <img src="BCD_2706.jpg" alt="Adam Sadriddinov and participants discussing a research demonstration" loading="lazy">
+          <figcaption><strong>BrainHack Demo</strong><span>Discussing research software and visualization with participants.</span></figcaption>
+        </figure>
+        <figure class="gallery-item" tabindex="0">
+          <img src="1%20(2).jpg" alt="Vanderbilt research community gathered outdoors" loading="lazy">
+          <figcaption><strong>MASI Community</strong><span>Research, teamwork, and life beyond the lab.</span></figcaption>
+        </figure>
+        <figure class="gallery-item" tabindex="0">
+          <img src="IMG_0300.jpg" alt="Adam Sadriddinov and Adam Saunders in front of a spleen-fusion research poster" loading="lazy">
+          <figcaption><strong>Spleen Fusion</strong><span>Presenting voxel-wise model fusion with Adam M. Saunders.</span></figcaption>
+        </figure>
+        <figure class="gallery-item" tabindex="0">
+          <img src="IMG_6538.jpg" alt="Adam Sadriddinov collaborating with researchers around a table of laptops" loading="lazy">
+          <figcaption><strong>Building Together</strong><span>A collaborative coding session focused on open research tools.</span></figcaption>
+        </figure>
+      </div>
     </section>
   </main>
 
